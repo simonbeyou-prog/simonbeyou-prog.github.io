@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F9F1F2">
+<title>Une surprise pour toi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   AMÉLIORATIONS — SURPRISE WEBSITE
+========================================================= */
+:root{
+  --bg:#F9F1F2;
+  --card-bg:#FFFDFD;
+  --text:#35252B;
+  --text-soft:#806970;
+
+  --primary:#B76E79;
+  --primary-dark:#8E4A58;
+
+  --gold:#C9A66B;
+  --gold-soft:#F0DDE0;
+
+  --border:#E8CDD1;
+  --shadow:rgba(142,74,88,0.15);
+
+  --btn-text:#FFFDFD;
+}
+
+/* =========================
+   RESET
+========================= */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  min-height:100%;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(255,255,255,.75),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(240,221,224,.7),
+      transparent 35%
+    ),
+    var(--bg);
+
+  color:var(--text);
+
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1,
+h2{
+  font-family:
+    'Fraunces',
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  margin:0 0 14px;
+
+  font-weight:600;
+  line-height:1.2;
+
+  color:var(--text);
+}
+
+h1{
+  font-size:clamp(1.8rem,8vw,2.3rem);
+}
+
+h2{
+  font-size:clamp(1.3rem,5.2vw,1.55rem);
+}
+
+p{
+  margin:0 0 18px;
+
+  line-height:1.6;
+
+  color:var(--text-soft);
+}
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.card{
+  position:relative;
+
+  max-width:420px;
+  width:100%;
+
+  background:var(--card-bg);
+
+  border:1px solid var(--border);
+
+  border-radius:22px;
+
+  padding:clamp(28px,6vw,40px);
+
+  box-shadow:
+    0 20px 55px var(--shadow);
+
+  text-align:center;
+
+  overflow:hidden;
+}
+
+/* Decorative corners */
+
+.card::before,
+.card::after{
+  content:"";
+
+  position:absolute;
+
+  width:22px;
+  height:22px;
+
+  border:1.5px solid var(--gold);
+
+  opacity:.65;
+}
+
+.card::before{
+  top:14px;
+  left:14px;
+
+  border-right:none;
+  border-bottom:none;
+
+  border-radius:6px 0 0 0;
+}
+
+.card::after{
+  bottom:14px;
+  right:14px;
+
+  border-left:none;
+  border-top:none;
+
+  border-radius:0 0 6px 0;
+}
+
+/* =========================
+   SCREENS
+========================= */
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+
+  animation:
+    fade .4s ease;
+}
+
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(5px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* =========================
+   WELCOME SEAL
+========================= */
+
+.seal{
+  width:58px;
+  height:58px;
+
+  border:1.5px solid var(--gold);
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:0 auto 20px;
+
+  color:var(--primary);
+
+  font-size:1.35rem;
+
+  background:
+    radial-gradient(
+      circle,
+      var(--gold-soft),
+      transparent 70%
+    );
+}
+
+.proclaim{
+  font-style:italic;
+
+  font-size:clamp(
+    1.65rem,
+    7vw,
+    2.15rem
+  );
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+  display:inline-block;
+
+  background:var(--primary);
+
+  color:var(--btn-text);
+
+  border:none;
+
+  padding:14px 30px;
+
+  border-radius:999px;
+
+  font-family:'Inter',sans-serif;
+
+  font-size:1rem;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  margin-top:6px;
+
+  box-shadow:
+    0 7px 18px rgba(183,110,121,.22);
+
+  transition:
+    background-color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.btn:hover{
+  background:var(--primary-dark);
+
+  transform:translateY(-1px);
+
+  box-shadow:
+    0 9px 22px rgba(142,74,88,.25);
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+.btn:disabled{
+  opacity:.6;
+
+  cursor:default;
+
+  transform:none;
+}
+
+.btn:focus-visible{
+  outline:2px solid var(--gold);
+
+  outline-offset:3px;
+}
+
+/* =========================
+   SECONDARY LINK BUTTON
+========================= */
+
+.link-btn{
+  display:block;
+
+  width:100%;
+
+  background:none;
+
+  border:none;
+
+  color:var(--text-soft);
+
+  text-decoration:underline;
+
+  text-decoration-color:var(--border);
+
+  text-underline-offset:3px;
+
+  font-size:.9rem;
+
+  cursor:pointer;
+
+  margin-top:14px;
+
+  font-family:'Inter',sans-serif;
+
+  transition:
+    color .2s ease;
+}
+
+.link-btn:hover{
+  color:var(--primary);
+}
+
+/* =========================
+   CHOICES
+   (if used elsewhere)
+========================= */
+
+.choices{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+  margin:22px 0 8px;
+
+  text-align:left;
+}
+
+.choice{
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  width:100%;
+
+  background:var(--bg);
+
+  border:1.5px solid var(--border);
+
+  border-radius:12px;
+
+  padding:12px 14px;
+
+  cursor:pointer;
+
+  font-family:'Inter',sans-serif;
+
+  font-size:.95rem;
+
+  color:var(--text);
+
+  text-align:left;
+
+  transition:
+    border-color .2s ease,
+    background-color .2s ease,
+    transform .2s ease;
+}
+
+.choice:hover{
+  border-color:var(--primary);
+
+  transform:translateY(-1px);
+}
+
+.choice:focus-visible{
+  outline:2px solid var(--gold);
+
+  outline-offset:2px;
+}
+
+.choice .mark{
+  flex:none;
+
+  width:26px;
+  height:26px;
+
+  border-radius:50%;
+
+  border:1.5px solid var(--gold);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:.8rem;
+
+  font-weight:600;
+
+  color:var(--gold);
+}
+
+.choice.selected{
+  border-color:var(--primary);
+
+  background:var(--gold-soft);
+}
+
+.choice.selected .mark{
+  background:var(--primary);
+
+  border-color:var(--primary);
+
+  color:var(--btn-text);
+}
+
+/* =========================
+   REPLY / CONTINUE
+========================= */
+
+.reply{
+  min-height:1.4em;
+
+  font-weight:500;
+
+  color:var(--primary);
+
+  opacity:0;
+
+  transition:opacity .3s ease;
+
+  margin:6px 0 18px;
+}
+
+.reply.visible{
+  opacity:1;
+}
+
+.continue-btn{
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:opacity .3s ease;
+}
+
+.continue-btn.visible{
+  opacity:1;
+
+  pointer-events:auto;
+}
+
+/* =========================
+   WHEEL
+========================= */
+
+#wheel-wrap{
+  position:relative;
+
+  width:min(70vw,270px);
+
+  height:min(70vw,270px);
+
+  margin:26px auto 18px;
+}
+
+#wheel-canvas{
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  border-radius:50%;
+
+  transition:
+    transform 4.6s cubic-bezier(.15,.68,.22,1);
+
+  box-shadow:
+    0 14px 34px rgba(142,74,88,.20);
+
+  border:2px solid rgba(201,166,107,.65);
+}
+
+/* Wheel pointer */
+
+.pointer{
+  position:absolute;
+
+  top:-7px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:0;
+  height:0;
+
+  border-left:12px solid transparent;
+
+  border-right:12px solid transparent;
+
+  border-top:20px solid var(--primary);
+
+  filter:
+    drop-shadow(
+      0 2px 2px rgba(0,0,0,.12)
+    );
+
+  z-index:3;
+}
+
+/* =========================
+   PLANNING
+========================= */
+
+.planning{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:12px;
+
+  margin:24px 0 8px;
+
+  text-align:left;
+}
+
+.planning-item{
+  display:flex;
+
+  align-items:stretch;
+
+  background:var(--bg);
+
+  border:1.5px solid var(--border);
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.planning-item:hover{
+  transform:translateY(-1px);
+
+  box-shadow:
+    0 6px 16px rgba(142,74,88,.10);
+}
+
+.planning-date{
+  flex:0 0 105px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:14px 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold-soft),
+      #F7E9EB
+    );
+
+  color:var(--primary-dark);
+
+  font-weight:600;
+
+  font-size:.88rem;
+
+  text-align:center;
+
+  line-height:1.3;
+}
+
+.planning-content{
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  gap:3px;
+
+  padding:13px 14px;
+
+  color:var(--text);
+
+  font-size:.9rem;
+}
+
+.planning-content strong{
+  font-weight:600;
+
+  color:var(--text);
+}
+
+.planning-content span{
+  color:var(--text-soft);
+
+  line-height:1.4;
+}
+
+/* =========================
+   RESULT OVERLAY
+========================= */
+
+.overlay{
+  position:fixed;
+
+  inset:0;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:
+    rgba(53,37,43,.48);
+
+  backdrop-filter:blur(5px);
+
+  -webkit-backdrop-filter:blur(5px);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:
+    opacity .35s ease;
+
+  z-index:50;
+
+  padding:20px;
+}
+
+.overlay.visible{
+  opacity:1;
+
+  pointer-events:auto;
+}
+
+.overlay-card{
+  background:var(--card-bg);
+
+  border:1px solid var(--border);
+
+  box-shadow:
+    0 24px 70px rgba(53,37,43,.28);
+
+  border-radius:22px;
+
+  padding:34px 26px;
+
+  max-width:340px;
+
+  width:100%;
+
+  text-align:center;
+
+  animation:
+    overlayIn .4s ease;
+}
+
+@keyframes overlayIn{
+  from{
+    opacity:0;
+
+    transform:
+      scale(.95)
+      translateY(10px);
+  }
+
+  to{
+    opacity:1;
+
+    transform:
+      scale(1)
+      translateY(0);
+  }
+}
+
+.overlay-card .label{
+  color:var(--text-soft);
+
+  margin-bottom:6px;
+
+  font-size:.95rem;
+}
+
+#prize-text{
+  font-style:italic;
+
+  font-size:
+    clamp(
+      1.45rem,
+      6vw,
+      1.85rem
+    );
+
+  color:var(--primary-dark);
+}
+
+/* =========================
+   CONFETTI
+========================= */
+
+#confetti-canvas{
+  position:fixed;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  pointer-events:none;
+
+  z-index:60;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:380px){
+
+  body{
+    padding:12px;
+  }
+
+  .card{
+    padding:26px 20px;
+  }
+
+  .planning-date{
+    flex:0 0 92px;
+
+    font-size:.82rem;
+  }
+
+  .planning-content{
+    font-size:.85rem;
+
+    padding:12px;
+  }
+
+  #wheel-wrap{
+    width:min(68vw,250px);
+
+    height:min(68vw,250px);
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  #wheel-canvas{
+    transition-duration:.6s;
+  }
+
+  .screen.active{
+    animation:none;
+  }
+
+  .overlay-card{
+    animation:none;
+  }
+
+  .planning-item,
+  .btn{
+    transition:none;
+  }
+}
+/* =========================================================
+   NOUVELLES AMÉLIORATIONS
+   Compatible avec le design actuel
+========================================================= */
+
+
+/* =========================
+   TEXTE INTRO
+========================= */
+
+.intro-decoration {
+  width: 58px;
+  height: 58px;
+
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 20px;
+
+  color: var(--primary);
+
+  font-size: 1.35rem;
+
+  background:
+    radial-gradient(
+      circle,
+      var(--gold-soft),
+      transparent 70%
+    );
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+
+  font-size: .68rem;
+  font-weight: 600;
+
+  letter-spacing: .18em;
+
+  color: var(--primary-dark);
+}
+
+.intro-text {
+  margin-bottom: 10px;
+
+  font-size: .95rem;
+  line-height: 1.65;
+}
+
+.intro-small {
+  margin: 0 auto 22px;
+
+  max-width: 340px;
+
+  font-size: .85rem;
+  line-height: 1.55;
+
+  color: var(--text-soft);
+}
+
+.gold-line {
+  width: 45px;
+  height: 1.5px;
+
+  margin: 20px auto;
+
+  background: var(--gold);
+
+  border-radius: 10px;
+}
+
+
+/* =========================
+   BOUTONS
+========================= */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 70%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.25),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left .6s ease;
+}
+
+.btn:hover::after {
+  left: 130%;
+}
+
+
+/* =========================
+   TEXTE ROUE
+========================= */
+
+.screen-intro {
+  margin: -4px 0 12px;
+
+  font-size: .88rem;
+
+  line-height: 1.55;
+}
+
+
+/* =========================
+   PLANNING
+========================= */
+
+.planning-timeline {
+  position: relative;
+
+  margin: 25px 0 12px;
+
+  text-align: left;
+}
+
+.planning-timeline::before {
+  content: "";
+
+  position: absolute;
+
+  left: 21px;
+
+  top: 15px;
+  bottom: 15px;
+
+  width: 1.5px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      var(--gold),
+      var(--border),
+      var(--gold)
+    );
+}
+
+.timeline-item {
+  position: relative;
+
+  display: flex;
+
+  gap: 14px;
+
+  margin-bottom: 15px;
+}
+
+.timeline-marker {
+  position: relative;
+
+  z-index: 2;
+
+  flex: 0 0 43px;
+
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--card-bg);
+
+  border: 1.5px solid var(--gold);
+
+  color: var(--primary);
+
+  font-size: .85rem;
+
+  box-shadow:
+    0 4px 10px rgba(142,74,88,.08);
+}
+
+.timeline-card {
+  flex: 1;
+
+  padding: 13px 15px;
+
+  background: var(--bg);
+
+  border: 1px solid var(--border);
+
+  border-radius: 13px;
+
+  box-shadow:
+    0 4px 12px rgba(142,74,88,.05);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 7px 16px rgba(142,74,88,.10);
+}
+
+.timeline-date {
+  margin-bottom: 4px;
+
+  font-size: .66rem;
+
+  font-weight: 600;
+
+  letter-spacing: .12em;
+
+  color: var(--primary-dark);
+}
+
+.timeline-card h3 {
+  margin: 0 0 4px;
+
+  font-family: 'Fraunces', Georgia, serif;
+
+  font-size: .98rem;
+
+  font-weight: 600;
+
+  color: var(--text);
+}
+
+.timeline-card p {
+  margin: 0;
+
+  font-size: .82rem;
+
+  line-height: 1.45;
+}
+
+.timeline-extra {
+  margin-top: 5px;
+
+  font-size: .78rem;
+
+  font-style: italic;
+
+  color: var(--primary-dark);
+}
+
+.special-card {
+  border-color: var(--gold);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(240,221,224,.55),
+      var(--bg)
+    );
+}
+
+
+/* =========================
+   MESSAGE PERSONNEL
+========================= */
+
+.message-decoration {
+  width: 58px;
+  height: 58px;
+
+  border: 1.5px solid var(--gold);
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 20px;
+
+  color: var(--primary);
+
+  background:
+    radial-gradient(
+      circle,
+      var(--gold-soft),
+      transparent 70%
+    );
+}
+
+.personal-message {
+  margin: 22px auto;
+
+  max-width: 340px;
+}
+
+.personal-message p {
+  margin-bottom: 14px;
+
+  font-size: .88rem;
+
+  line-height: 1.65;
+}
+
+.personal-message .message-highlight {
+  margin: 20px 0;
+
+  font-family: 'Fraunces', Georgia, serif;
+
+  font-size: 1.65rem;
+
+  color: var(--primary-dark);
+}
+
+
+/* =========================
+   DESTINATION
+========================= */
+
+.destination-decoration {
+  width: 58px;
+  height: 58px;
+
+  border: 1.5px solid var(--gold);
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 20px;
+
+  font-size: 1.3rem;
+
+  background:
+    radial-gradient(
+      circle,
+      var(--gold-soft),
+      transparent 70%
+    );
+}
+
+.destination-intro {
+  margin: 18px 0;
+
+  font-family: 'Fraunces', Georgia, serif;
+
+  font-size: 1.05rem;
+
+  color: var(--text-soft);
+}
+
+.destination-box {
+  margin: 22px auto;
+
+  padding: 22px 18px;
+
+  background: var(--bg);
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 7px 18px rgba(142,74,88,.07);
+}
+
+.destination-small {
+  display: block;
+
+  margin-bottom: 13px;
+
+  font-size: .62rem;
+
+  font-weight: 600;
+
+  letter-spacing: .17em;
+
+  color: var(--primary-dark);
+}
+
+.destination-hidden {
+  width: 75px;
+  height: 75px;
+
+  margin: 0 auto 13px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+
+  color: white;
+
+  font-family: 'Fraunces', Georgia, serif;
+
+  font-size: 2.4rem;
+
+  box-shadow:
+    0 8px 20px rgba(183,110,121,.22);
+}
+
+.destination-box p {
+  margin: 0;
+
+  font-size: .82rem;
+}
+
+
+/* =========================
+   RÉSULTAT ROUE
+========================= */
+
+.result-sparkles {
+  margin-bottom: 10px;
+
+  color: var(--gold);
+
+  font-size: 1rem;
+
+  letter-spacing: .4em;
+}
+
+.prize {
+  margin: 17px 0;
+
+  font-family: 'Fraunces', Georgia, serif;
+
+  font-size: 1.7rem;
+
+  font-style: italic;
+
+  color: var(--primary-dark);
+}
+
+.result-message {
+  font-size: .87rem;
+
+  line-height: 1.55;
+}
+
+
+/* =========================
+   OVERLAY FINAL
+========================= */
+
+.final-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 70;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    rgba(53,37,43,.48);
+
+  backdrop-filter: blur(5px);
+
+  -webkit-backdrop-filter: blur(5px);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    opacity .35s ease,
+    visibility .35s ease;
+}
+
+.final-overlay.visible {
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.final-card {
+  width: 100%;
+
+  max-width: 340px;
+
+  padding: 32px 25px;
+
+  text-align: center;
+
+  background: var(--card-bg);
+
+  border: 1px solid var(--border);
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 24px 70px rgba(53,37,43,.28);
+
+  transform: scale(.95) translateY(10px);
+
+  transition:
+    transform .35s ease;
+}
+
+.final-overlay.visible .final-card {
+  transform: scale(1) translateY(0);
+}
+
+.final-plane {
+  margin-bottom: 10px;
+
+  font-size: 2.4rem;
+}
+
+.final-card h2 {
+  margin-bottom: 12px;
+}
+
+.final-card p {
+  font-size: .88rem;
+
+  line-height: 1.6;
+}
+
+
+/* =========================
+   APPARITION DES ÉLÉMENTS
+========================= */
+
+.screen.active .eyebrow,
+.screen.active h1,
+.screen.active h2,
+.screen.active .intro-text,
+.screen.active .screen-intro,
+.screen.active .planning-timeline,
+.screen.active .personal-message,
+.screen.active .destination-box {
+  animation:
+    contentAppear .45s ease both;
+}
+
+@keyframes contentAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+</style>
+</head>
+<body>
+
+<!-- =========================
+     PAGE 1 — INTRO
+========================= -->
+
+<div class="card">
+
+  <!-- =========================
+       PAGE 1 — INTRO
+  ========================= -->
+
+  <section class="screen active" id="screen-welcome">
+
+    <div class="intro-decoration">
+      ✦
+    </div>
+
+    <p class="eyebrow">
+      UNE PETITE SURPRISE POUR TOI
+    </p>
+
+    <h1>
+      Ça y est…<br>
+      c'est enfin terminé. ❤️
+    </h1>
+
+    <p class="intro-text">
+      Après des mois, des années de travail,
+      de révisions, de stress et de sacrifices…
+    </p>
+
+    <p class="intro-text">
+      il est enfin temps de penser à toi,
+      de souffler et surtout de profiter.
+    </p>
+
+    <div class="gold-line"></div>
+
+    <p class="intro-small">
+      Et évidemment, je ne pouvais pas te laisser
+      terminer tout ça sans prévoir quelque chose
+      pour toi…
+    </p>
+
+    <button class="btn" data-next="screen-wheel">
+      J'ai quelque chose pour toi ✨
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       PAGE 2 — ROUE
+  ========================= -->
+
+  <section class="screen" id="screen-wheel">
+
+    <p class="eyebrow">
+      ÉTAPE 01
+    </p>
+
+    <h2>
+      La roue du mérite
+    </h2>
+
+    <p class="screen-intro">
+      Parce qu'après tout ce travail,<br>
+      tu mérites bien quelques surprises…
+    </p>
+
+    <div id="wheel-wrap">
+
+      <div class="pointer"></div>
+
+      <canvas
+        id="wheel-canvas"
+        width="500"
+        height="500">
+      </canvas>
+
+    </div>
+
+    <button class="btn" id="spin-btn">
+      Tourner la roue 🎡
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       PAGE 3 — PLANNING
+  ========================= -->
+
+  <section class="screen" id="screen-planning">
+
+    <p class="eyebrow">
+      ÉTAPE 02
+    </p>
+
+    <h2>
+      Le programme des festivités
+    </h2>
+
+    <p class="screen-intro">
+      Quelques jours rien que pour toi ❤️
+    </p>
+
+
+    <div class="planning-timeline">
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-marker">
+          ♡
+        </div>
+
+        <div class="timeline-card">
+
+          <div class="timeline-date">
+            VENDREDI 16
+          </div>
+
+          <h3>
+            🍽️ Déjeuner
+          </h3>
+
+          <p>
+            Un bon déjeuner pour commencer les festivités…
+          </p>
+
+          <div class="timeline-extra">
+            puis spa + massage 💆‍♀️
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-marker">
+          ♡
+        </div>
+
+        <div class="timeline-card">
+
+          <div class="timeline-date">
+            SAMEDI 17
+          </div>
+
+          <h3>
+            🛍️ Journée Shopping
+          </h3>
+
+          <p>
+            Une journée entièrement consacrée au shopping.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-marker">
+          ♡
+        </div>
+
+        <div class="timeline-card">
+
+          <div class="timeline-date">
+            DIMANCHE 18
+          </div>
+
+          <h3>
+            ☕ Petit-déjeuner au lit
+          </h3>
+
+          <p>
+            Pas besoin de se lever tôt.
+          </p>
+
+          <div class="timeline-extra">
+            + une petite surprise 🎁
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-marker">
+          ✈
+        </div>
+
+        <div class="timeline-card special-card">
+
+          <div class="timeline-date">
+            DIMANCHE 25
+          </div>
+
+          <h3>
+            ✈️ Départ pour le weekend
+          </h3>
+
+          <p>
+            Et là… les choses deviennent intéressantes.
+          </p>
+
+          <div class="timeline-extra">
+            Destination : <strong>TOP SECRET 🤫</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button class="btn" id="planning-next-btn">
+      Continuer ❤️
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       PAGE 4 — MESSAGE
+  ========================= -->
+
+  <section class="screen" id="screen-message">
+
+    <div class="message-decoration">
+      ✦
+    </div>
+
+    <p class="eyebrow">
+      ET SURTOUT…
+    </p>
+
+    <h2>
+      Tu l'as mérité.
+    </h2>
+
+    <div class="gold-line"></div>
+
+    <div class="personal-message">
+
+      <p>
+        Ces dernières années, tu as énormément travaillé
+        pour arriver jusqu'ici.
+      </p>
+
+      <p>
+        J'ai vu les heures de révisions, les moments
+        de doute, le stress et tous les efforts
+        que tu as faits.
+      </p>
+
+      <p>
+        Alors maintenant, c'est à ton tour
+       de te reposer.
+      </p>
+
+      <p class="message-highlight">
+        Profite. ❤️
+      </p>
+
+      <p>
+        Tu peux enfin souffler, penser à autre chose
+        et profiter de tout ce qui arrive maintenant.
+      </p>
+
+    </div>
+
+    <button class="btn" id="destination-btn">
+      J'ai encore une dernière surprise… ✨
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       PAGE 5 — DESTINATION
+  ========================= -->
+
+  <section class="screen" id="screen-destination">
+
+    <div class="destination-decoration">
+      ✈
+    </div>
+
+    <p class="eyebrow">
+      DERNIÈRE SURPRISE
+    </p>
+
+    <h2>
+      Tu pensais vraiment<br>
+      que j'allais te le dire ?
+    </h2>
+
+    <p class="destination-intro">
+      Le dimanche 25…
+    </p>
+
+    <div class="destination-box">
+
+      <span class="destination-small">
+        PRÉPARE TA VALISE
+      </span>
+
+      <div class="destination-hidden">
+        ?
+      </div>
+
+      <p>
+        La destination est encore secrète.
+      </p>
+
+    </div>
+
+    <button class="btn" id="reveal-destination-btn">
+      Découvrir la destination ✈️
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       OVERLAY ROUE
+  ========================= -->
+
+  <div class="overlay" id="result-overlay">
+  <div class="overlay-card">
+    <div class="result-decoration">✦</div>
+
+    <p>Tu as tiré :</p>
+
+    <div id="prize-text"></div>
+
+    <p id="result-message">
+      Oh non… quel dommage, c'est perdu 😭
+    </p>
+
+    <button class="btn" id="close-overlay-btn">
+      Découvrir le planning
+    </button>
+
+    <button class="link-btn" id="respin-btn">
+      Retente ta chance
+    </button>
+  </div>
+</div>
+
+  <!-- =========================
+       DESTINATION FINALE
+  ========================= -->
+
+  <div class="final-overlay" id="final-overlay">
+
+    <div class="final-card">
+
+      <div class="final-plane">
+        ✈️
+      </div>
+
+      <p class="eyebrow">
+        DESTINATION
+      </p>
+
+      <h2>
+        LYON → ANNECY
+      </h2>
+
+      <p>
+        Le reste… tu le découvriras le moment venu. ❤️
+      </p>
+
+      <button class="btn" id="final-close-btn">
+        Profiter de la surprise ✨
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<canvas id="confetti-canvas"></canvas>
+<script>
+const prizes = ["Massage & Spa","Resto","Petit-déj au lit","Perdu","Panier Zara","Weekend surprise","Toutes les options"];
+const segColors = [
+  "#B76E79",
+  "#E7C9CE",
+  "#8E4A58",
+  "#F0DDE0"
+];
+
+const segTextColors = [
+  "#FFFDFD",
+  "#35252B",
+  "#FFFDFD",
+  "#35252B"
+];
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+document.querySelectorAll('[data-next]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const nextId = btn.dataset.next;
+    showScreen(nextId);
+    if(nextId==='screen-wheel'){ sizeCanvas(); }
+  });
+});
+
+document.querySelectorAll('.choices').forEach(group=>{
+  const section = group.closest('.screen');
+  const replyEl = section.querySelector('.reply');
+  const continueBtn = section.querySelector('.continue-btn');
+  group.querySelectorAll('.choice').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      group.querySelectorAll('.choice').forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');
+      replyEl.textContent = btn.dataset.reply;
+      replyEl.classList.add('visible');
+      continueBtn.classList.add('visible');
+    });
+  });
+});
+
+const wheelWrap = document.getElementById('wheel-wrap');
+const wheelCanvas = document.getElementById('wheel-canvas');
+const wctx = wheelCanvas.getContext('2d');
+
+function sizeCanvas(){
+  const size = wheelWrap.clientWidth;
+  if(!size) return;
+  const dpr = window.devicePixelRatio || 1;
+  wheelCanvas.width = size*dpr;
+  wheelCanvas.height = size*dpr;
+  wctx.setTransform(dpr,0,0,dpr,0,0);
+  drawWheel(size);
+}
+window.addEventListener('resize', ()=>{
+  if(document.getElementById('screen-wheel').classList.contains('active')) sizeCanvas();
+});
+
+function drawWheel(size){
+  const radius = size/2;
+  const cx = radius, cy = radius;
+  const n = prizes.length;
+  const segRad = (2*Math.PI)/n;
+  wctx.clearRect(0,0,size,size);
+  prizes.forEach((label,i)=>{
+    const start = -Math.PI/2 + i*segRad;
+    const end = start+segRad;
+    wctx.beginPath();
+    wctx.moveTo(cx,cy);
+    wctx.arc(cx,cy,radius-3,start,end);
+    wctx.closePath();
+    wctx.fillStyle = segColors[i%4];
+    wctx.fill();
+    wctx.save();
+    wctx.translate(cx,cy);
+    wctx.rotate(start+segRad/2);
+    wctx.textAlign='right';
+    wctx.textBaseline='middle';
+    wctx.fillStyle = segTextColors[i%4];
+    wctx.font=`600 ${Math.max(9,size*0.04)}px Inter, sans-serif`;
+    wctx.fillText(label, radius-14, 0);
+    wctx.restore();
+  });
+  wctx.beginPath();
+  wctx.arc(cx,cy,radius*0.16,0,2*Math.PI);
+  wctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--card-bg').trim() || '#FFFCF5';
+  wctx.fill();
+  wctx.lineWidth=2;
+  wctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--gold').trim() || '#B8863B';
+  wctx.stroke();
+}
+
+let spinning=false;
+let cumulativeRotation=0;
+document.getElementById('spin-btn')
+  .addEventListener('click', spinWheel);
+
+document.getElementById('respin-btn')
+  .addEventListener('click', () => {
+
+    document
+      .getElementById('result-overlay')
+      .classList.remove('visible');
+
+    setTimeout(() => {
+      spinWheel();
+    }, 350);
+
+  });
+document.getElementById('close-overlay-btn')
+  .addEventListener('click', () => {
+
+    document
+      .getElementById('result-overlay')
+      .classList.remove('visible');
+
+    setTimeout(() => {
+      showScreen('screen-planning');
+    }, 300);
+});
+document.getElementById('planning-next-btn')
+  .addEventListener('click', () => {
+    showScreen('screen-message');
+});
+document.getElementById('destination-btn')
+  .addEventListener('click', () => {
+
+    showScreen('screen-destination');
+});
+document.getElementById('reveal-destination-btn')
+  .addEventListener('click', () => {
+
+    document
+      .getElementById('final-overlay')
+      .classList.add('visible');
+
+    launchConfetti();
+});
+document.getElementById('final-close-btn')
+  .addEventListener('click', () => {
+
+    document
+      .getElementById('final-overlay')
+      .classList.remove('visible');
+});
+
+let firstSpin = true;
+function spinWheel(){
+  if(spinning) return;
+  spinning=true;
+  const spinBtn = document.getElementById('spin-btn');
+  spinBtn.disabled = true;
+  const n = prizes.length;
+  const segDeg = 360/n;
+  let winnerIndex;
+  if (firstSpin) {
+    winnerIndex = prizes.indexOf("Perdu");
+    firstSpin = false;
+  } else {
+    winnerIndex = prizes.indexOf("Toutes les options");
+  }
+  const targetCenter = winnerIndex*segDeg + segDeg/2;
+  const jitter = (Math.random()-0.5)*(segDeg*0.5);
+  const desiredMod = (((360-targetCenter)+jitter)%360+360)%360;
+  const currentMod = ((cumulativeRotation%360)+360)%360;
+  let delta = desiredMod-currentMod;
+  if(delta<=15) delta+=360;
+  const extraSpins = 5+Math.floor(Math.random()*3);
+  cumulativeRotation += delta+extraSpins*360;
+  wheelCanvas.style.transform = `rotate(${cumulativeRotation}deg)`;
+  wheelCanvas.addEventListener('transitionend', function handler(e){
+    if(e.propertyName!=='transform') return;
+    wheelCanvas.removeEventListener('transitionend',handler);
+    spinning=false;
+    spinBtn.disabled=false;
+    document.getElementById('prize-text').textContent = prizes[winnerIndex];
+
+const resultMessage = document.getElementById('result-message');
+const closeBtn = document.getElementById('close-overlay-btn');
+const respinBtn = document.getElementById('respin-btn');
+
+if (prizes[winnerIndex] === "Perdu") {
+  resultMessage.textContent = "Oh non… quel dommage, c'est perdu 😭";
+  closeBtn.style.display = "none";
+  respinBtn.textContent = "Retente ta chance";
+} else {
+  resultMessage.textContent = "Cette fois, tu as tout gagné ! ❤️";
+  closeBtn.style.display = "inline-flex";
+  closeBtn.textContent = "Découvrir le planning";
+  respinBtn.textContent = "Tourner à nouveau";
+}
+
+document.getElementById('result-overlay').classList.add('visible');
+launchConfetti();
+  });
+}
+
+const confettiCanvas = document.getElementById('confetti-canvas');
+const cctx = confettiCanvas.getContext('2d');
+function resizeConfetti(){
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeConfetti);
+resizeConfetti();
+
+let confettiParticles=[];
+let confettiStart=null;
+function launchConfetti(){
+  const colors=['#6E2A3B','#B8863B','#D98E86','#E3D2AC','#501F2C'];
+  const count = reduceMotion?30:110;
+  confettiParticles = Array.from({length:count}).map(()=>({
+    x:Math.random()*confettiCanvas.width,
+    y:-20-Math.random()*confettiCanvas.height*0.3,
+    r:4+Math.random()*5,
+    color:colors[Math.floor(Math.random()*colors.length)],
+    speedY:2+Math.random()*3,
+    speedX:(Math.random()-0.5)*2,
+    rotation:Math.random()*360,
+    rotationSpeed:(Math.random()-0.5)*8,
+    shape: Math.random()>0.5?'rect':'circle'
+  }));
+  confettiStart=null;
+  requestAnimationFrame(animateConfetti);
+}
+function animateConfetti(ts){
+  if(!confettiStart) confettiStart=ts;
+  const elapsed = ts-confettiStart;
+  cctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+  confettiParticles.forEach(p=>{
+    p.x+=p.speedX; p.y+=p.speedY; p.rotation+=p.rotationSpeed;
+    cctx.save();
+    cctx.translate(p.x,p.y);
+    cctx.rotate(p.rotation*Math.PI/180);
+    cctx.fillStyle=p.color;
+    if(p.shape==='rect'){ cctx.fillRect(-p.r,-p.r*0.6,p.r*2,p.r*1.2); }
+    else { cctx.beginPath(); cctx.arc(0,0,p.r,0,2*Math.PI); cctx.fill(); }
+    cctx.restore();
+  });
+  confettiParticles = confettiParticles.filter(p=>p.y<confettiCanvas.height+30);
+  const maxTime = reduceMotion?800:3500;
+  if(elapsed<maxTime && confettiParticles.length>0){
+    requestAnimationFrame(animateConfetti);
+  } else {
+    cctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+  }
+}
+</script>
+</body>
+</html>
+
+
