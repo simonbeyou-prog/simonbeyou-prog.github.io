@@ -1386,6 +1386,119 @@ p{
   }
 
 }
+
+/* =========================
+   LETTRE & COMPTE À REBOURS
+========================= */
+.letter-signature {
+  margin-top: 18px;
+  color: var(--primary-dark);
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+.countdown-intro {
+  margin: 12px 0 20px;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--text-soft);
+}
+
+.countdown-card {
+  margin: 22px 0;
+  padding: 20px 12px;
+  background: linear-gradient(145deg, #FFFDFD, #F8E9EC);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(142,74,88,.09);
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.countdown-unit {
+  padding: 12px 3px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.76);
+  border: 1px solid rgba(232,205,209,.8);
+}
+
+.countdown-number {
+  display: block;
+  color: var(--primary-dark);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.45rem, 6vw, 2rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.countdown-label {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-soft);
+  font-size: .58rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+
+.countdown-footnote {
+  margin: 14px 0 0;
+  font-size: .78rem;
+}
+
+.countdown-heart {
+  display: inline-block;
+  animation: heartBeat 1.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  12% { transform: scale(1.12); }
+  24% { transform: scale(1); }
+  36% { transform: scale(1.08); }
+}
+
+#wheel-wrap.is-spinning .pointer {
+  animation: pointerTick .18s ease-in-out infinite alternate;
+  transform-origin: 50% 0;
+}
+
+@keyframes pointerTick {
+  from { transform: translateX(-50%) rotate(-4deg); }
+  to { transform: translateX(-50%) rotate(4deg); }
+}
+
+.overlay-card.lost-result {
+  animation: gentleShake .42s ease both;
+}
+
+@keyframes gentleShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
+}
+
+.overlay-card.winning-result {
+  animation: winningPop .55s cubic-bezier(.2,.8,.2,1.15) both;
+}
+
+@keyframes winningPop {
+  from { opacity: 0; transform: scale(.82) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (max-width: 350px) {
+  .countdown-grid { gap: 4px; }
+  .countdown-unit { padding: 10px 1px 8px; }
+  .countdown-label { font-size: .5rem; letter-spacing: .03em; }
+}
+
 </style>
 </head>
 <body>
@@ -1632,11 +1745,11 @@ p{
     </div>
 
     <p class="eyebrow">
-      ET SURTOUT…
+      UNE PETITE LETTRE POUR TOI
     </p>
 
     <h2>
-      Tu l'as mérité.
+      Je suis fier de toi. ❤️
     </h2>
 
     <div class="gold-line"></div>
@@ -1668,7 +1781,78 @@ p{
         et profiter de tout ce qui arrive maintenant.
       </p>
 
+      <p>
+        J'espère que ces quelques jours te feront du bien.
+        Tu n'as rien à organiser, juste à profiter… je m'occupe du reste. ❤️
+      </p>
+
+      <div class="letter-signature">Je t'embrasse ❤️</div>
+
     </div>
+
+    <button class="btn" id="letter-next-btn">
+      Et maintenant, on compte les jours… ✨
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       PAGE 5 — COMPTE À REBOURS
+  ========================= -->
+
+  <section class="screen" id="screen-countdown">
+
+    <div class="message-decoration">
+      <span class="countdown-heart">♡</span>
+    </div>
+
+    <p class="eyebrow">
+      LE GRAND DÉPART APPROCHE
+    </p>
+
+    <h2>
+      Plus que quelques dodos… ✈️
+    </h2>
+
+    <p class="countdown-intro">
+      Prochaine étape : notre week-end en amoureux.
+    </p>
+
+    <div class="countdown-card" aria-live="polite" aria-atomic="true">
+      <div class="countdown-grid">
+        <div class="countdown-unit">
+          <span class="countdown-number" id="countdown-days">00</span>
+          <span class="countdown-label">JOURS</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="countdown-hours">00</span>
+          <span class="countdown-label">HEURES</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="countdown-minutes">00</span>
+          <span class="countdown-label">MINUTES</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="countdown-seconds">00</span>
+          <span class="countdown-label">SECONDES</span>
+        </div>
+      </div>
+      <p class="countdown-footnote" id="countdown-caption">
+        Rendez-vous dimanche 25 octobre à 10 h ❤️
+      </p>
+    </div>
+
+    <p>
+      La destination reste secrète… mais pas pour longtemps 🤫
+    </p>
+
+    <div class="gold-line"></div>
+
+    <p class="intro-small">
+      D'ici là, garde un peu de place dans ta valise
+      et surtout, garde ta bonne humeur. 💕
+    </p>
 
   </section>
 
@@ -1861,6 +2045,12 @@ document.getElementById('planning-next-btn')
   .addEventListener('click', () => {
     showScreen('screen-message');
 });
+
+document.getElementById('letter-next-btn')
+  .addEventListener('click', () => {
+    showScreen('screen-countdown');
+    updateCountdown();
+  });
 document.getElementById('final-close-btn')
   .addEventListener('click', () => {
 
@@ -1873,6 +2063,7 @@ let firstSpin = true;
 function spinWheel(){
   if(spinning) return;
   spinning=true;
+  wheelWrap.classList.add('is-spinning');
   const spinBtn = document.getElementById('spin-btn');
   spinBtn.disabled = true;
   const n = prizes.length;
@@ -1897,6 +2088,7 @@ function spinWheel(){
     if(e.propertyName!=='transform') return;
     wheelCanvas.removeEventListener('transitionend',handler);
     spinning=false;
+    wheelWrap.classList.remove('is-spinning');
     spinBtn.disabled=false;
     document.getElementById('prize-text').textContent = prizes[winnerIndex];
 
@@ -1904,19 +2096,24 @@ const resultMessage = document.getElementById('result-message');
 const closeBtn = document.getElementById('close-overlay-btn');
 const respinBtn = document.getElementById('respin-btn');
 
+const overlayCard = document.querySelector('#result-overlay .overlay-card');
+overlayCard.classList.remove('lost-result', 'winning-result');
+
 if (prizes[winnerIndex] === "Perdu") {
   resultMessage.textContent = "Oh non… quel dommage, c'est perdu 😭";
   closeBtn.style.display = "none";
   respinBtn.textContent = "Retente ta chance";
+  overlayCard.classList.add('lost-result');
 } else {
   resultMessage.textContent = "Cette fois, tu as tout gagné ! ❤️";
   closeBtn.style.display = "inline-flex";
   closeBtn.textContent = "Découvrir le planning";
   respinBtn.textContent = "Tourner à nouveau";
+  overlayCard.classList.add('winning-result');
+  launchConfetti();
 }
 
 document.getElementById('result-overlay').classList.add('visible');
-launchConfetti();
   });
 }
 
@@ -1932,7 +2129,7 @@ resizeConfetti();
 let confettiParticles=[];
 let confettiStart=null;
 function launchConfetti(){
-  const colors=['#6E2A3B','#B8863B','#D98E86','#E3D2AC','#501F2C'];
+  const colors=['#B76E79','#C9A66B','#E7C9CE','#8E4A58','#F0DDE0'];
   const count = reduceMotion?30:110;
   confettiParticles = Array.from({length:count}).map(()=>({
     x:Math.random()*confettiCanvas.width,
@@ -1970,6 +2167,40 @@ function animateConfetti(ts){
     cctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
   }
 }
+
+/* =========================
+   COMPTE À REBOURS
+   Dimanche 25 octobre 2026 à 10 h, heure française
+========================= */
+const departureDate = new Date('2026-10-25T10:00:00+01:00');
+
+function updateCountdown() {
+  const remaining = departureDate.getTime() - Date.now();
+  const caption = document.getElementById('countdown-caption');
+
+  if (remaining <= 0) {
+    document.getElementById('countdown-days').textContent = '00';
+    document.getElementById('countdown-hours').textContent = '00';
+    document.getElementById('countdown-minutes').textContent = '00';
+    document.getElementById('countdown-seconds').textContent = '00';
+    caption.textContent = "C'est parti pour notre week-end ! ❤️";
+    return;
+  }
+
+  const days = Math.floor(remaining / 86400000);
+  const hours = Math.floor((remaining % 86400000) / 3600000);
+  const minutes = Math.floor((remaining % 3600000) / 60000);
+  const seconds = Math.floor((remaining % 60000) / 1000);
+
+  document.getElementById('countdown-days').textContent = String(days).padStart(2, '0');
+  document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
 </script>
 </body>
 </html>
